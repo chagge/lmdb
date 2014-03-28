@@ -73,7 +73,19 @@
 #include <stdlib.h>
 #include <string.h>
 #include <time.h>
+#ifndef _MSC_VER
 #include <unistd.h>
+#else
+#pragma comment(lib, "Advapi32.lib")
+#include <stdint.h>
+#define ssize_t int64_t
+void srandom(int r) {
+	srand(r);
+}
+int random() {
+	return rand();
+}
+#endif
 
 #if !(defined(BYTE_ORDER) || defined(__BYTE_ORDER))
 #include <netinet/in.h>

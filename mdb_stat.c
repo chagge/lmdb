@@ -14,7 +14,14 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+#ifndef _MSC_VER
 #include <unistd.h>
+#else
+#include "wingetopt.h"
+#include "wingetopt.c"
+#include <stdint.h>
+#define ssize_t int64_t
+#endif
 #include "lmdb.h"
 
 #ifdef	_WIN32
